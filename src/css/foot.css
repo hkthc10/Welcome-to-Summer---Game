@@ -1,0 +1,44 @@
+.foot {
+    min-width: 1300px;
+  }
+  
+  .foot-item {
+    padding: 30px 0 40px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 12px;
+  }
+  
+  .foot-pt {
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    margin: -10px 0;
+    width: 800px;
+    min-width: 1024px;
+    align-items: center;
+  }
+  
+  .foot-pt .imgfoot {
+    margin: 10px 30px ;
+    height: 36px;
+  }
+  
+  .foot-pt p {
+    display: inline;
+  }
+  
+  .foot-pt a {
+    text-decoration: none;
+    margin: 10px;
+  }
+  
+  .foot-pt img {
+    width: auto;
+    height: 100%;
+    min-width: 1px;
+    min-height: 1px;
+  }
+
+  

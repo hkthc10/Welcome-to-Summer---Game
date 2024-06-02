@@ -1,0 +1,31 @@
+body {
+    margin: 0 10px;
+}
+
+h3 {
+    font-size: 28px;
+    cursor: default;
+}
+
+#contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px 200px 100px 0px;
+}
+
+#contact-container h3 {
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+}
+
+.contact {
+    padding: 30px;
+    margin: 10px 0;
+    border: 1px solid black;
+    cursor: pointer;
+    width: 100%;
+
+}

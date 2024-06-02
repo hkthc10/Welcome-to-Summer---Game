@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Games</title>
+    <link rel="icon" href="">
+    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="./src/css/games.css">
+    <link rel="stylesheet" href="./src/css/navbar.css">
+    <link rel="stylesheet" href="./src/css/games-upload.css">
+    <link rel="stylesheet" href="./src/css/foot.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="loading">
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="./src/img/LoadingScreen-ezgif.com-speed.gif" alt="Loading...">
+    </div>
+
+    <!-- Container -->
+    <div class="container">
+
+        <!-- Header -->
+        <header class="h-change">
+            <div class="header-logo">
+                <img class="dark" src="./src/img/Logo Dark.png" alt="">
+                <img class="light" src="./src/img/Logo Light.png" alt="">
+            </div>
+            <nav class="navbar header-nav d-flex">
+                <div id="menu" class="head-nav">
+                    <a href="./index.html" class="head-nav-item d-flex reverse">Home</a>
+                    <a href="./contact.html" class="head-nav-item d-flex reverse">Contact</a>
+                    <a href="./games.html" class="head-nav-item d-flex reverse">Games</a>
+                    <div class="fr"></div>
+                </div>
+            </nav>
+            <!-- Hai hình ảnh cần thay đổi -->
+            <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
+                onclick="switchImages('white')">
+            <img id="light" class="change-mode" src="./src/img/Change Dark.png" draggable="false" alt="Light Mode"
+                onclick="switchImages('black')">
+            <div id="sub-list"></div>
+        </header>
+        <!-- End Header -->
+
+        <!-- Main -->
+        <main>
+            <div class="game-menu">
+                <div class="container">
+                    <h1>Thêm Game: </h1>
+                    <form id="game-form">
+                        <label for="game-title">Title</label>
+                        <input class="edit" type="text" id="game-title" placeholder="Title...">
+
+                        <label for="game-image">Image-Path</label>
+                        <input class="edit" type="text" id="game-image" placeholder="Image path...">
+
+                        <label for="game-tags">Tags</label>
+                        <div class="autocomplete-container">
+                            <input class="edit" type="text" id="game-tags" placeholder="Tags..." autocomplete="off">
+                        </div>
+
+                        <label for="game-content">Content</label>
+                        <textarea class="edit" id="game-content" placeholder="Content..."></textarea>
+
+                        <button class="edit-btn" type="submit">Add game</button>
+                    </form>
+
+                    <div id="games-container" class="flex"></div>
+
+                    <div class="overlay" onclick="closePopup()"></div>
+                    <div class="popup">
+                        <h2>Edit game</h2>
+                        <form id="edit-form">
+                            <input type="hidden" id="edit-game-id">
+                            <input class="edit" type="text" id="edit-title" placeholder="Title" required>
+                            <input class="edit" type="text" id="edit-image" placeholder="Image URL" required>
+                            <input class="edit" type="text" id="edit-tags" placeholder="Tags" required>
+                            <textarea class="edit" type="text" id="edit-content" placeholder="Content"
+                                required></textarea>
+                            <button class="edit-btn" type="submit">Save Changes</button>
+                            <button class="edit-btn" type="button" onclick="closePopup()">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- End Main -->
+
+        <!-- Start Footer -->
+        <footer class="foot">
+            <div class="foot-item d-flex">
+                <div class="foot-pt">
+                    <div class="imgfoot">
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        <a href="#">Chính Sách Về Quyền Riêng Tư</a>
+                        <a href="#">Điều Khoản Dịch Vụ</a>
+                        <a href="./about.html">Giới Thiệu Công Ty</a>
+                        <a href="#">Liên Hệ Chúng Tôi</a>
+                    </div>
+
+                    <div style="line-height: 1.6;">
+                        <p style="white-space: pre-wrap;">
+                            "PlayStation Family Mark," "PS5 logo" and "PS4 logo" are registered trademarks or trademarks
+                            of Sony
+                            Interactive Entertainment Inc.</p>
+
+                        <p style="white-space: pre-wrap;">
+                            Epic, Epic Games, Epic Games Store, the Epic Games Store logo, and Epic Online Services are
+                            trademarks
+                            and/or registered trademarks of Epic Games. All other trademarks are the property
+                            of their respective owners.
+                        </p>
+                    </div>
+                    <div class="imgfoot">
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        Copyright © COGNOSPHERE. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <!-- To the top button -->
+        <button onclick="scrollToTop()" id="toTopBtn" title="Go to top">Top</button>
+    </div>
+
+    <!-- Link Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.0/firebase-auth-compat.min.js"
+        integrity="sha512-u4HjRw6xinzQGDRP1QwHIc/SZRdACWhJ3lFZW6xBD9/XBQFXbCYQMSlCJUa2KyZ27Nef6gyY3TO0ToCoAtqDCg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Main Script -->
+    <script src="./src/js/fbconfig.js"></script>
+    <script src="./src/js/app.js"></script>
+    <script src="./src/js/signout.js"></script>
+    <script src="./src/js/main.js"></script>
+    <script src="./src/js/hint-tags.js"></script>
+</body>
+<script>
+    // Nút dropdown
+    const drdown = document.querySelector('#dropdown');
+    const menu = document.querySelector('.sub-nav');
+    drdown.addEventListener('click', function () {
+        menu.classList.toggle("active");
+    })
+
+    // Hàm cuộn đến đầu trang của trang
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Hiệu ứng cuộn mượt
+        });
+    }
+
+    // Hiển thị hoặc ẩn nút "về đầu trang" dựa trên vị trí cuộn
+    window.addEventListener('scroll', function () {
+        var toTopButton = document.getElementById("toTopBtn");
+        if (window.scrollY > 700) {
+            toTopButton.style.display = "block";
+        } else {
+            toTopButton.style.display = "none";
+        }
+    });
+
+    // Ẩn màn hình loading sau 3 giây
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            var loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.style.display = 'none';
+            // Khôi phục thanh cuộn
+            document.body.classList.remove('loading');
+        }, 2000);
+    });
+</script>
+
+</html>

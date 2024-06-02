@@ -1,0 +1,193 @@
+/* Đăng xuất (Logout Button) */
+#logout-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+/* Tiêu đề (Headings) */
+h2 {
+    text-align: center;
+    color: #000000;
+    width: 600px;
+}
+
+h3 {
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 10px 0;
+}
+
+/* Biểu mẫu chỉnh sửa (Edit Form) */
+#edit-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.edit {
+    padding: 7px 2px;
+    margin: 5px 0;
+}
+
+/* Biểu mẫu trò chơi (Game Form) */
+#game-form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 5px 400px;
+}
+
+.search-bar {
+    margin: 15px 0 0px 40px;
+    width: 450px;
+}
+
+.search-bar input {
+    padding: 10px 0px 10px 10px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+/* Owl carousel */
+.owl-carousel {
+    position: relative;
+}
+
+.owl-dots {
+    position: absolute;
+    top: 90%;
+    left: 48%;
+}
+
+.owl-prev,
+.owl-next {
+    position: absolute;
+    width: 30px;
+    height: 70px;
+    top: 49%;
+}
+
+.owl-prev:hover,
+.owl-next:hover {
+    position: absolute;
+    width: 30px;
+    height: 70px;
+    top: 49%;
+    background: transparent !important;
+}
+
+.owl-prev {
+    left: 30%;
+}
+
+.owl-next {
+    right: 30%;
+}
+
+.owl-prev span,
+.owl-next span {
+    border-radius: 4px;
+    font-size: 64px;
+    color: #ffffff;
+}
+
+/* Tải Thêm */
+#loadmore {
+    background-color: wheat;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 0px 45% 30px 45%;
+    cursor: pointer;
+}
+
+#loadmore p {
+    text-align: center;
+}
+
+/* Tự Hoàn thành điền */
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
+.autocomplete-container {
+    position: relative;
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: #fff;
+    z-index: 1000;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.show {
+    display: block;
+}
+
+.close-popup {
+    margin-top: 10px;
+}
+
+/* Edit Button */
+.edit-btn {
+    padding: 7px 0;
+    margin: 5px 0;
+}
+
+/* Text */
+.tc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    color: inherit;
+    opacity: 0.7;
+    font-size: 12px;
+    line-height: 1.2;
+}

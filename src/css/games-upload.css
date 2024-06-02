@@ -1,0 +1,20 @@
+/* Game */
+.game {
+  width: 28.7%;
+  padding: 15px;
+}
+
+.game img {
+  opacity: 1;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.game:hover img {
+  opacity: 0.8;
+}

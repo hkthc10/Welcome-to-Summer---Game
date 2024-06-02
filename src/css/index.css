@@ -1,0 +1,113 @@
+/* Đặt lại giá trị mặc định của margin và padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Container */
+.container {
+  min-width: 1140px;
+}
+
+/* Phong cách cho body */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Phong cách cho phần main */
+main {
+  min-width: 1140px;
+}
+
+/* Các lớp tiện ích cho flexbox */
+.d-flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* Ẩn thanh cuộn khi đang tải */
+body.loading {
+  overflow: hidden;
+}
+
+/* Phong cách cho màn hình tải */
+#loading-screen {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  padding: 600px 0 0 1000px;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+#loading-screen img {
+  width: 500px;
+  /* Điều chỉnh kích thước của gif tải */
+}
+
+/* Nút trở về đầu trang */
+#toTopBtn {
+  display: none;
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  z-index: 99;
+  background-color: #878787;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 20px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#toTopBtn:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 600px) {
+  #toTopBtn {
+    right: 10px;
+    bottom: 10px;
+    padding: 10px;
+  }
+}
+
+/* Container danh sách trò chơi */
+#games-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 200px 100px 200px;
+}
+
+#games-container .game {
+  padding: 30px;
+  margin: 10px auto;
+  border: 1px solid black;
+  cursor: pointer;
+  width: 30%;
+}
+
+#games-container .game img {
+  border: 1px solid white;
+  width: 100%;
+  padding: 0px;
+  height: 200px;
+  object-fit: cover;
+  transition: all 1s;
+}

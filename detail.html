@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Detail</title>
+    <link rel="stylesheet" href="./src/css/index.css">
+    <link rel="stylesheet" href="./src/css/navbar.css">
+    <link rel="stylesheet" href="./src/css/detail.css">
+    <link rel="stylesheet" href="./src/css/foot.css">
+</head>
+
+<body class="loading">
+
+    <!-- Màn Hình Tải -->
+    <div id="loading-screen">
+        <img src="./src/img/LoadingScreen-ezgif.com-speed.gif" alt="Đang tải...">
+    </div>
+
+    <!-- Bắt Đầu Container -->
+    <div class="container">
+
+        <!-- Bắt Đầu Header -->
+        <header class="h-change">
+            <div class="header-logo">
+                <img class="dark" src="./src/img/Logo Dark.png" alt="">
+                <img class="light" src="./src/img/Logo Light.png" alt="">
+            </div>
+            <nav class="navbar header-nav d-flex">
+                <div id="menu" class="head-nav">
+                    <a href="./index.html" class="head-nav-item d-flex reverse">Home</a>
+                    <a href="./contact.html" class="head-nav-item d-flex reverse">Contact</a>
+                    <a href="./games.html" class="head-nav-item d-flex reverse">Games</a>
+                    <div class="fr"></div>
+                </div>
+            </nav>
+            <div id="sub-list"></div>
+            
+            <!-- Hai hình ảnh cần thay đổi -->
+            <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
+                onclick="switchImages('white')">
+            <img id="light" class="change-mode" src="./src/img/Change Dark.png" draggable="false" alt="Light Mode"
+                onclick="switchImages('black')">
+        </header>
+        <!-- Kết Thúc Header -->
+
+        <!-- Main -->
+        <main>
+            <div id="detail-container" class="bg-changeable">
+                <!-- Nội dung chi tiết sẽ được hiển thị ở đây -->
+            </div>
+        </main>
+        <!-- Kết thúc main -->
+
+        <!-- Start Footer -->
+        <footer class="foot f-change">
+            <div class="foot-item d-flex">
+                <div class="foot-pt">
+                    <div class="imgfoot">
+                        <img src="" alt="">
+                    </div>
+                    <div>
+                        <a class="reverse" href="#">Chính Sách Về Quyền Riêng Tư</a>
+                        <a class="reverse" href="#">Điều Khoản Dịch Vụ</a>
+                        <a class="reverse" href="#">Giới Thiệu Công Ty</a>
+                        <a class="reverse" href="#">Liên Hệ Chúng Tôi</a>
+                    </div>
+
+                    <div class="reverse" style="line-height: 1.6;">
+                        <p style="white-space: pre-wrap;">
+                            "PlayStation Family Mark," "PS5 logo" and "PS4 logo" are registered trademarks or trademarks
+                            of Sony
+                            Interactive Entertainment Inc.</p>
+
+                        <p style="white-space: pre-wrap;">
+                            Epic, Epic Games, Epic Games Store, the Epic Games Store logo, and Epic Online Services are
+                            trademarks
+                            and/or registered trademarks of Epic Games. All other trademarks are the property
+                            of their respective owners.
+                        </p>
+                    </div>
+                    <div class="imgfoot">
+                        <img src="" alt="">
+                    </div>
+                    <div class="reverse">
+                        Copyright © COGNOSPHERE. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <!-- To the top button -->
+        <button onclick="scrollToTop()" id="toTopBtn" title="Go to top">Top</button>
+
+    </div>
+
+    <script>
+        // Lấy các tham số truy vấn
+        const queryParams = new URLSearchParams(window.location.search);
+        const gameId = queryParams.get('id');
+        const author = queryParams.get('author');
+        const imgPath = queryParams.get('imgPath');
+        const title = queryParams.get('title');
+        const content = queryParams.get('content');
+
+        // Display detailed content
+        const detailContainer = document.getElementById('detail-container');
+        detailContainer.innerHTML = `
+            <div class="con-detail m-change">
+                <h3 class="changeable">Tác Giả: ${author}</h3>
+                <h3 class="changeable">Tiêu Đề: ${title}</h3>
+                <img src="${imgPath}" alt="Hình Ảnh Trò Chơi"/>
+                <p class="changeable">${content}</p>
+            </div>
+    `;
+    </script>
+
+    <!-- Link FireBase -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.2/firebase-firestore-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/10.7.0/firebase-auth-compat.min.js"
+        integrity="sha512-u4HjRw6xinzQGDRP1QwHIc/SZRdACWhJ3lFZW6xBD9/XBQFXbCYQMSlCJUa2KyZ27Nef6gyY3TO0ToCoAtqDCg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Main Script -->
+    <script src="./src/js/fbconfig.js"></script>
+    <script src="./src/js/app.js"></script>
+    <script src="./src/js/signout.js"></script>
+</body>
+
+<script>
+    // Nút dropdown
+    const drdown = document.querySelector('#dropdown');
+    const menu = document.querySelector('.sub-nav');
+    drdown.addEventListener('click', function () {
+        menu.classList.toggle("active");
+    })
+
+    // Hàm cuộn đến đầu trang của trang
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Hiệu ứng cuộn mượt
+        });
+    }
+
+    // Hiển thị hoặc ẩn nút "về đầu trang" dựa trên vị trí cuộn
+    window.addEventListener('scroll', function () {
+        var toTopButton = document.getElementById("toTopBtn");
+        if (window.scrollY > 700) {
+            toTopButton.style.display = "block";
+        } else {
+            toTopButton.style.display = "none";
+        }
+    });
+
+    // Ẩn màn hình loading sau 3 giây
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            var loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.style.display = 'none';
+            // Khôi phục thanh cuộn
+            document.body.classList.remove('loading');
+        }, 2000);
+    });
+</script>
+
+</html>

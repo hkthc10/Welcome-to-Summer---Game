@@ -1,0 +1,39 @@
+.fr {
+    left: 370px;
+    width: 65px;
+}
+
+form {
+    flex-direction: column;
+    margin: 0 15% 100px 15%;
+}
+
+h3 {
+    font-size: 28px;
+    padding: 100px 0 30px 0;
+    text-align: center;
+    cursor: default;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+}
+
+.row input {
+    padding: 15px 5px;
+    margin: 0 0 20px 0;
+}
+
+.row textarea {
+    padding: 5px 5px;
+    margin: 0 0 20px 0;
+    resize: vertical;
+    max-height: 300px;
+}
+
+button[type='submit'] {
+    margin: 20px 0;
+    padding: 15px 0;
+    cursor: pointer;
+}

@@ -1,0 +1,67 @@
+.fr {
+  left: 450px;
+  width: 65px;
+}
+
+/* Add Game Button */
+.menu-tags-game {
+  position: absolute;
+  right: 0;
+  padding: 14.7px;
+  background-color: #000;
+  box-shadow: none;
+}
+
+.box-zoom {
+  overflow: hidden;
+  height: 200px;
+}
+
+.game:hover img:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
+.anm-game-menu {
+  background-color: #151949;
+  margin: 70px 0px 0px 800px;
+  height: 705px;
+  position: fixed;
+  z-index: 99;
+  display: flex;
+  
+}
+
+.game-menu {
+  display: none;
+}
+
+.game-menu-toggle {
+  display: block;
+}
+
+.menu-container {
+  padding: 50px;
+  min-width: 890px;
+}
+
+.menu-container h3 {
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.menu-container p {
+  color: white;
+  margin: auto 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+input[type='checkbox'] {
+  width:30px;
+  height:30px;
+  margin: 10px 10px 10px 0px;
+}
