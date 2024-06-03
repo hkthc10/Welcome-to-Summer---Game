@@ -14,14 +14,6 @@ function switchImages(color) {
   var mainChange = document.querySelectorAll('.m-change')
   var footerChange = document.querySelectorAll('.f-change');
 
-  // Set the text color for elements with class 'reverse' based on the selected color
-  colorReverse.forEach(function (element) {
-    element.style.color = (color === 'white') ? 'black' : 'white';
-  });
-
-  bgColorReverse.forEach(function (element) {
-    element.style.backgroundColor = (color === 'white') ? 'black' : 'white';
-  });
 
   // Store the selected color in localStorage
   localStorage.setItem('selectedColor', color);
@@ -34,7 +26,7 @@ function switchImages(color) {
     logoLight.style.display = 'none';
     // Loop through each element with class 'changeable' and change its background color
     changeAble.forEach(function (element) {
-      element.style.color = "white";
+      element.style.color = "black";
     });
 
     mainChange.forEach(function (element) {
@@ -72,7 +64,7 @@ function switchImages(color) {
       element.style.backgroundColor = 'rgb(255, 244, 183)';
     });
     changeAble.forEach(function (element) {
-      element.style.color = "black";
+      element.style.color = "white";
     });
 
     mainChange.forEach(function (element) {

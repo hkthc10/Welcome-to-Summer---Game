@@ -111,3 +111,8 @@ body.loading {
   object-fit: cover;
   transition: all 1s;
 }
+
+#dark , #light {
+  user-select: none; /* standard syntax */
+  cursor: pointer;
+}

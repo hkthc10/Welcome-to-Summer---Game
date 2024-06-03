@@ -36,7 +36,7 @@
                 </div>
             </nav>
             <div id="sub-list"></div>
-            
+
             <!-- Hai hình ảnh cần thay đổi -->
             <img id="dark" class="change-mode" src="./src/img/Change Light.png" draggable="false" alt="Dark Mode"
                 onclick="switchImages('white')">
@@ -109,11 +109,22 @@
         const detailContainer = document.getElementById('detail-container');
         detailContainer.innerHTML = `
             <div class="con-detail m-change">
-                <h3 class="changeable">Tác Giả: ${author}</h3>
-                <h3 class="changeable">Tiêu Đề: ${title}</h3>
-                <img src="${imgPath}" alt="Hình Ảnh Trò Chơi"/>
-                <p class="changeable">${content}</p>
+                <h3 class="reverse">Tác Giả: ${author}</h3>
+                <h3 class="reverse">Tiêu Đề: ${title}</h3>
+                <img src="${imgPath}" onerror="this.remove()" alt="Hình Ảnh Trò Chơi"/>
+                <p class="reverse">${content}</p>
+                <h2 class="reverse">Download</h2>
+                <div class="download-btn">
+                    <a class="bg-reverse changeable" href="path/to/your/file" download="filename">Download File</a>
+                </div>
             </div>
+            <!-- Comment Section -->
+            <div id="comment-section">
+                <h3 class="reverse">Bình luận</h3>
+                <textarea id="commentInput" placeholder="Viết bình luận..."></textarea>
+                <button id="submitComment">Gửi</button>
+            </div>
+            <div id="comments-container"></div>
     `;
     </script>
 
@@ -128,7 +139,7 @@
     <script src="./src/js/fbconfig.js"></script>
     <script src="./src/js/app.js"></script>
     <script src="./src/js/signout.js"></script>
-    <script src="./src/js/admin.js"></script>
+    <script src="./src/js/comment.js"></script>
 </body>
 
 <script>
