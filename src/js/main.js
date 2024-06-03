@@ -61,8 +61,11 @@ const fetchGames = () => {
     });
 };
 
+
 const renderGames = (games) => {
-  const html = games.map((game) => `
+  const filteredGames = games.filter(game => isAuthor(game.author)); // Filter games where author is current user
+
+  const html = filteredGames.map((game) => `
     <label class="game">
       <div>
         <h3>${game.author}</h3>
@@ -78,7 +81,26 @@ const renderGames = (games) => {
     </label>
   `).join("");
   gamesContainer.innerHTML = html;
-};
+
+  if (isAdmin()) {
+    const html = games.map((game) => `
+      <label class="game">
+        <div>
+          <h3>${game.author}</h3>
+          <div class="box-zoom">
+            <img src="${game.imgPath}" alt="" />
+          </div>
+          <h3>${game.title}</h3>
+          <a>${game.tags}</a>
+          <p class="tc">${game.content}</p>
+          <button class="edit-game" onclick="openEditForm('${game.id}', '${game.title}', '${game.content}', '${game.imgPath}', '${game.tags}', '${game.author}')">Edit</button>
+          <button class="delete-game" onclick="handleDelete('${game.id}', '${game.author}')">Delete</button>
+        </div>
+      </label>
+    `).join("");
+    gamesContainer.innerHTML = html;
+  };
+}
 
 const handleDelete = (gameId, authorEmail) => {
   if (isAdmin() || isAuthor(authorEmail)) {
@@ -148,3 +170,12 @@ gameForm.addEventListener("submit", (e) => {
 });
 
 window.addEventListener("DOMContentLoaded", fetchGames);
+
+
+auth.onAuthStateChanged((user) => {
+  if (!user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/v8/firebase.User
+    window.location.href = "index.html";
+  }
+});

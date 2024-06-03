@@ -57,7 +57,9 @@
         <main>
             <div class="game-menu">
                 <div class="container">
-                    <h1>Thêm Game: </h1>
+                    <div class="game-section">
+                        <h5>Add Game</h5>
+                    </div>
                     <form id="game-form">
                         <label for="game-title">Title</label>
                         <input class="edit" type="text" id="game-title" placeholder="Title...">
@@ -76,6 +78,10 @@
                         <button class="edit-btn" type="submit">Add game</button>
                     </form>
 
+                    <div class="game-section">
+                        <h4>Your Game</h4>
+                    </div>
+                    
                     <div id="games-container" class="flex"></div>
 
                     <div class="overlay" onclick="closePopup()"></div>
@@ -98,20 +104,20 @@
         <!-- End Main -->
 
         <!-- Start Footer -->
-        <footer class="foot">
+        <footer class="foot f-change">
             <div class="foot-item d-flex">
                 <div class="foot-pt">
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
                     <div>
-                        <a href="#">Chính Sách Về Quyền Riêng Tư</a>
-                        <a href="#">Điều Khoản Dịch Vụ</a>
-                        <a href="./about.html">Giới Thiệu Công Ty</a>
-                        <a href="#">Liên Hệ Chúng Tôi</a>
+                        <a class="reverse" href="#">Chính Sách Về Quyền Riêng Tư</a>
+                        <a class="reverse" href="#">Điều Khoản Dịch Vụ</a>
+                        <a class="reverse" href="#">Giới Thiệu Công Ty</a>
+                        <a class="reverse" href="#">Liên Hệ Chúng Tôi</a>
                     </div>
 
-                    <div style="line-height: 1.6;">
+                    <div class="reverse" style="line-height: 1.6;">
                         <p style="white-space: pre-wrap;">
                             "PlayStation Family Mark," "PS5 logo" and "PS4 logo" are registered trademarks or trademarks
                             of Sony
@@ -127,13 +133,14 @@
                     <div class="imgfoot">
                         <img src="" alt="">
                     </div>
-                    <div>
+                    <div class="reverse">
                         Copyright © COGNOSPHERE. All Rights Reserved.
                     </div>
                 </div>
             </div>
         </footer>
         <!-- End Footer -->
+
 
         <!-- To the top button -->
         <button onclick="scrollToTop()" id="toTopBtn" title="Go to top">Top</button>
