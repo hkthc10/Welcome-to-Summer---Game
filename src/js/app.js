@@ -132,40 +132,60 @@ if (selectedColor) {
 }
 
 // DOM
+// Retrieve and parse user data from localStorage
+// Retrieve and parse user data from localStorage
 let user_data = JSON.parse(localStorage.getItem("current_user_data"));
 
-let subList = document.getElementById("sub-list")
-let subNav = document.getElementById("subnavout")
-if (user_data) {
-  subList.innerHTML =
-    `
-  <div class="sublist header-lr d-flex head-nav-item" id="dropdown">
+let subList = document.getElementById("sub-list");
+let subNav = document.getElementById("subnavout");
 
+if (user_data && user_data !== "buithaithinh69@gmail.com") {
+  subList.innerHTML = `
+    <div class="sublist header-lr d-flex head-nav-item" id="dropdown">
+      <p class="prevent-select"><span id="email"></span></p>
+      <ul class="sub-nav" id="subnavout">
+        <li>
+          <a id="logout">Logout</a>
+        </li>
+        <li>
+          <a id="edit" href="./upload-games.html">Edit</a>
+        </li>
+      </ul>
+    </div>
+  `;
+  let user_email_span = document.getElementById("email");
+  // email
+  user_email_span.innerText = "Email: " + user_data;
+} else if (user_data && user_data === "buithaithinh69@gmail.com") {
+  subList.innerHTML = `
+  <div class="sublist header-lr d-flex head-nav-item" id="dropdown">
   <p class="prevent-select"><span id="email"></span></p>
   <ul class="sub-nav" id="subnavout">
-      <li>
-          <a id="logout">Logout</a>
-      </li>
-      <li>
-          <a id="edit" href="./upload-games.html">Edit</a>
-      </li>
+    <li>
+      <a id="logout">Logout</a>
+    </li>
+    <li>
+      <a id="edit" href="./upload-games.html">Edit</a>
+    </li>
+    <li>
+    <a id="admin" href="./admin.html">Admin</a>
+  </li>
   </ul>
 </div>
   `;
   let user_email_span = document.getElementById("email");
   // email
-  user_email_span.innerText = "Email:" + " " + user_data;
+  user_email_span.innerText = "Email: " + user_data;
 } else {
-  subList.innerHTML =
-    `
-  <div class="sublist header-lr d-flex head-nav-item" id="dropdown">
+  subList.innerHTML = `
+    <div class="sublist header-lr d-flex head-nav-item" id="dropdown">
       <a href="./register.html" class="lr-butt items-center d-flex" style="width:auto;">
-          <span>Register</Span>
+        <span>Register</span>
       </a>
-          <div class="lr-butt-h items-center d-flex center-lr">/</div>
+      <div class="lr-butt-h items-center d-flex center-lr">/</div>
       <a href="./login.html" class="lr-butt items-center d-flex" style="width:auto;">
-          <span>Login</Span>
+        <span>Login</span>
       </a>
-  </div>
-  `
+    </div>
+  `;
 }

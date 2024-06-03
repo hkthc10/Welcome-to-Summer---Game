@@ -11,6 +11,12 @@ const handleLogin = (event) => {
   let email = email_login.value;
   let password = password_login.value;
 
+  // Validate
+  if (!email || !password) {
+    alert("Fill in all fields!");
+    return;
+  }
+
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       var user = userCredential.user;

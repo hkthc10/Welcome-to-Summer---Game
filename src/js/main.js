@@ -2,27 +2,28 @@ const gamesContainer = document.querySelector("#games-container");
 const gameForm = document.querySelector("#game-form");
 const editModal = document.querySelector('.popup');
 const editForm = document.querySelector("#edit-form");
+let currentgameId = null;
 
-// Hàm thêm game
+const getCurrentUserData = () => JSON.parse(localStorage.getItem("current_user_data"));
+const isAdmin = () => getCurrentUserData() === "buithaithinh69@gmail.com";
+const isAuthor = (authorEmail) => getCurrentUserData() === authorEmail;
+
 const addGame = (title, content, imgPath, tags) => {
-  let user_data = JSON.parse(localStorage.getItem("current_user_data"));
+  let user_data = getCurrentUserData();
   if (!title || !content || !tags || !imgPath) {
     alert("Please fill in all fields.");
     return;
   }
   db.collection("games")
-    .add(
-      {
-        author: user_data,
-        title: title,
-        content: content,
-        imgPath: imgPath,
-        tags: tags,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      }
-    )
+    .add({
+      author: user_data,
+      title: title,
+      content: content,
+      imgPath: imgPath,
+      tags: tags,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    })
     .then((docRef) => {
-      console.log("Document written with ID: ", docRef.id);
       alert("Game added successfully!");
       fetchGames();
     })
@@ -32,17 +33,12 @@ const addGame = (title, content, imgPath, tags) => {
     });
 };
 
-
-// Hàm xóa game
 const deleteGame = (gameId) => {
-  if (confirm("Ban chac chan muon xoa")) {
-    db.collection("games")
-      .doc(gameId)
-      .delete()
+  if (confirm("Are you sure you want to delete this game?")) {
+    db.collection("games").doc(gameId).delete()
       .then(() => {
-        console.log("Document successfully deleted!");
         alert("Game deleted successfully!");
-        fetchGames()
+        fetchGames();
       })
       .catch((error) => {
         console.error("Error removing document: ", error);
@@ -51,18 +47,13 @@ const deleteGame = (gameId) => {
   }
 };
 
-// Hàm lấy danh sách game từ Firebase về
 const fetchGames = () => {
-  db.collection("games")
-    .orderBy("createdAt", "desc")
-    .get()
+  db.collection("games").orderBy("createdAt", "desc").get()
     .then((querySnapshot) => {
       const games = [];
       querySnapshot.forEach((doc) => {
         games.push({ id: doc.id, ...doc.data() });
       });
-
-      // Gọi hàm để render
       renderGames(games);
     })
     .catch((error) => {
@@ -70,47 +61,38 @@ const fetchGames = () => {
     });
 };
 
-// Render dữ liệu cho phần eđit
 const renderGames = (games) => {
-  const html = games.map((game) => {
-    return `
-      <label class="game">
-        <div>
+  const html = games.map((game) => `
+    <label class="game">
+      <div>
         <h3>${game.author}</h3>
-          <div class="box-zoom">
-            <img src="${game.imgPath}" alt="" />
-          </div>
-          <h3>${game.title}</h3>
-          <a>${game.tags}</a>
-          <p class="tc">${game.content}</p>
-          <button class="edit-game" onclick="openEditForm('${game.id}', '${game.title}', '${game.content}', '${game.imgPath}', '${game.tags}')">Edit</button>
-          <button class="" onclick="deleteGame('${game.id}')">Delete</button>
+        <div class="box-zoom">
+          <img src="${game.imgPath}" alt="" />
         </div>
-      </label>
-    `
-  }).join("");
+        <h3>${game.title}</h3>
+        <a>${game.tags}</a>
+        <p class="tc">${game.content}</p>
+        <button class="edit-game" onclick="openEditForm('${game.id}', '${game.title}', '${game.content}', '${game.imgPath}', '${game.tags}', '${game.author}')">Edit</button>
+        <button class="delete-game" onclick="handleDelete('${game.id}', '${game.author}')">Delete</button>
+      </div>
+    </label>
+  `).join("");
   gamesContainer.innerHTML = html;
 };
 
-
-// Function to open the edit form
-const openEditForm = (id, title, content, imgPath, tags) => {
-  currentgameId = id;
-  document.querySelector("#edit-title").value = title;
-  document.querySelector("#edit-content").value = content;
-  document.querySelector("#edit-image").value = imgPath;
-  document.querySelector("#edit-tags").value = tags;
-  document.querySelector('.popup').classList.add('show');
-  document.querySelector('.overlay').classList.add('show');
+const handleDelete = (gameId, authorEmail) => {
+  if (isAdmin() || isAuthor(authorEmail)) {
+    deleteGame(gameId);
+  } else {
+    alert("You are not authorized to delete this game!");
+  }
 };
 
-// Function to close the edit form
 const closePopup = () => {
-  document.querySelector('.popup').classList.remove('show');
+  editModal.classList.remove('show');
   document.querySelector('.overlay').classList.remove('show');
 };
 
-// Function to update a game
 const updateGame = async (id, title, content, imgPath, tags) => {
   const updatedData = {
     title: title,
@@ -120,13 +102,8 @@ const updateGame = async (id, title, content, imgPath, tags) => {
     updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
   };
 
-  console.log(updatedData);
-
-  db.collection("games")
-    .doc(id)
-    .update(updatedData)
+  db.collection("games").doc(id).update(updatedData)
     .then(() => {
-      console.log("Document successfully updated!");
       alert("Game updated successfully!");
       fetchGames();
       closePopup();
@@ -137,7 +114,29 @@ const updateGame = async (id, title, content, imgPath, tags) => {
     });
 };
 
-// Thêm game
+editForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const title = document.querySelector("#edit-title").value;
+  const content = document.querySelector("#edit-content").value;
+  const imgPath = document.querySelector("#edit-image").value;
+  const tags = document.querySelector("#edit-tags").value;
+  updateGame(currentgameId, title, content, imgPath, tags);
+});
+
+const openEditForm = (id, title, content, imgPath, tags, authorEmail) => {
+  if (isAdmin() || isAuthor(authorEmail)) {
+    currentgameId = id;
+    document.querySelector("#edit-title").value = title;
+    document.querySelector("#edit-content").value = content;
+    document.querySelector("#edit-image").value = imgPath;
+    document.querySelector("#edit-tags").value = tags;
+    editModal.classList.add('show');
+    document.querySelector('.overlay').classList.add('show');
+  } else {
+    alert("You are not authorized to edit this game!");
+  }
+};
+
 gameForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const title = document.querySelector("#game-title").value;
@@ -148,16 +147,4 @@ gameForm.addEventListener("submit", (e) => {
   gameForm.reset();
 });
 
-// Event listener to handle form submission for editing a game
-editForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const title = document.querySelector("#edit-title").value;
-  const content = document.querySelector("#edit-content").value;
-  const imgPath = document.querySelector("#edit-image").value;
-  const tags = document.querySelector("#edit-tags").value;
-  updateGame(currentgameId, title, content, imgPath, tags);
-});
-
-
-// Lắng nghe sự kiện: Nếu DOM của tất cả file đã được load 
 window.addEventListener("DOMContentLoaded", fetchGames);
